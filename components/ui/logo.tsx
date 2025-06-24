@@ -11,6 +11,15 @@ interface LogoProps {
 
 const Logo: React.FC<LogoProps> = ({ className = "", size = 64 }) => {
   const { theme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <div className={`flex-shrink-0 ${className}`}>
