@@ -1,44 +1,71 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { ExternalLink, Github, Calendar } from "lucide-react"
-import Link from "next/link"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ExternalLink, Github, Calendar } from "lucide-react";
+import Link from "next/link";
+import JaguarBackground from "@/components/ui/jaguar-background";
 
 export default function ProjectsPage() {
   return (
-    <div className="container mx-auto px-4 py-8 max-w-6xl">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-foreground mb-2">Projects</h1>
-        <p className="text-muted-foreground">A collection of my work, experiments, and open source contributions</p>
+    <div className="container mx-auto px-4 py-8 max-w-4xl relative">
+      {/* Jaguar Skin Background */}
+      <JaguarBackground variant="secondary" />
+
+      {/* Floating Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-32 right-20 w-80 h-80 bg-gradient-to-br from-emerald-500/5 to-teal-500/5 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-40 left-20 w-64 h-64 bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-full blur-3xl animate-float-delayed"></div>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mb-8 animate-fade-in-up relative z-10">
+        <h1 className="text-3xl font-bold text-foreground mb-2">Projects</h1>
+        <p className="text-muted-foreground">
+          A collection of my work, experiments, and open source contributions
+        </p>
+      </div>
+
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 relative z-10">
         {/* Featured Project */}
-        <Card className="md:col-span-2 lg:col-span-3">
+        <Card className="md:col-span-2 lg:col-span-3 hover-lift hover-glow animate-fade-in-up animate-stagger-1">
           <CardHeader>
             <div className="aspect-video bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500 rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
               <div className="absolute inset-0 bg-black/20"></div>
               <div className="relative text-white text-center">
-                <div className="text-2xl font-bold mb-2">E-Commerce Platform</div>
+                <div className="text-2xl font-bold mb-2">
+                  E-Commerce Platform
+                </div>
                 <div className="text-sm opacity-90">Full-stack application</div>
               </div>
             </div>
             <div className="flex justify-between items-start">
               <div>
-                <CardTitle className="text-xl">Modern E-Commerce Platform</CardTitle>
+                <CardTitle className="text-xl">
+                  Modern E-Commerce Platform
+                </CardTitle>
                 <CardDescription className="flex items-center gap-2 mt-1">
                   <Calendar className="h-3 w-3" />
                   <span>Dec 2024</span>
                 </CardDescription>
               </div>
               <div className="flex gap-2">
-                <Button variant="outline" size="sm" asChild>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  asChild
+                  className="hover-lift"
+                >
                   <Link href="https://github.com" target="_blank">
                     <Github className="h-4 w-4 mr-1" />
                     Code
                   </Link>
                 </Button>
-                <Button size="sm" asChild>
+                <Button size="sm" asChild className="hover-lift">
                   <Link href="https://example.com" target="_blank">
                     <ExternalLink className="h-4 w-4 mr-1" />
                     Live Demo
@@ -49,9 +76,10 @@ export default function ProjectsPage() {
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground mb-4">
-              A comprehensive e-commerce solution built with Next.js and Node.js. Features include user authentication,
-              payment processing, inventory management, and real-time analytics. Deployed on AWS with CI/CD pipeline and
-              monitoring.
+              A comprehensive e-commerce solution built with Next.js and
+              Node.js. Features include user authentication, payment processing,
+              inventory management, and real-time analytics. Deployed on AWS
+              with CI/CD pipeline and monitoring.
             </p>
             <div className="flex flex-wrap gap-2">
               <Badge>Next.js</Badge>
@@ -66,7 +94,7 @@ export default function ProjectsPage() {
         </Card>
 
         {/* Regular Projects */}
-        <Card className="group hover:shadow-lg transition-shadow">
+        <Card className="group hover-lift hover-glow animate-scale-in animate-stagger-2">
           <CardHeader>
             <div className="aspect-video bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg mb-4 flex items-center justify-center">
               <div className="text-white text-lg font-semibold">AI Chat</div>
@@ -80,12 +108,22 @@ export default function ProjectsPage() {
                 </CardDescription>
               </div>
               <div className="flex gap-1">
-                <Button variant="ghost" size="sm" asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  asChild
+                  className="hover-lift"
+                >
                   <Link href="https://github.com" target="_blank">
                     <Github className="h-4 w-4" />
                   </Link>
                 </Button>
-                <Button variant="ghost" size="sm" asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  asChild
+                  className="hover-lift"
+                >
                   <Link href="https://example.com" target="_blank">
                     <ExternalLink className="h-4 w-4" />
                   </Link>
@@ -95,8 +133,9 @@ export default function ProjectsPage() {
           </CardHeader>
           <CardContent>
             <p className="text-sm text-muted-foreground mb-4">
-              Real-time chat application with AI integration using OpenAI API. Features include message history, typing
-              indicators, and custom AI personalities.
+              Real-time chat application with AI integration using OpenAI API.
+              Features include message history, typing indicators, and custom AI
+              personalities.
             </p>
             <div className="flex flex-wrap gap-1">
               <Badge variant="secondary" className="text-xs">
@@ -112,7 +151,7 @@ export default function ProjectsPage() {
           </CardContent>
         </Card>
 
-        <Card className="group hover:shadow-lg transition-shadow">
+        <Card className="group hover-lift hover-glow animate-scale-in animate-stagger-3">
           <CardHeader>
             <div className="aspect-video bg-gradient-to-br from-blue-500 to-indigo-500 rounded-lg mb-4 flex items-center justify-center">
               <div className="text-white text-lg font-semibold">Dashboard</div>
@@ -126,12 +165,22 @@ export default function ProjectsPage() {
                 </CardDescription>
               </div>
               <div className="flex gap-1">
-                <Button variant="ghost" size="sm" asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  asChild
+                  className="hover-lift"
+                >
                   <Link href="https://github.com" target="_blank">
                     <Github className="h-4 w-4" />
                   </Link>
                 </Button>
-                <Button variant="ghost" size="sm" asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  asChild
+                  className="hover-lift"
+                >
                   <Link href="https://example.com" target="_blank">
                     <ExternalLink className="h-4 w-4" />
                   </Link>
@@ -141,8 +190,8 @@ export default function ProjectsPage() {
           </CardHeader>
           <CardContent>
             <p className="text-sm text-muted-foreground mb-4">
-              Interactive dashboard for data visualization with real-time updates, custom charts, and export
-              functionality.
+              Interactive dashboard for data visualization with real-time
+              updates, custom charts, and export functionality.
             </p>
             <div className="flex flex-wrap gap-1">
               <Badge variant="secondary" className="text-xs">
@@ -158,7 +207,7 @@ export default function ProjectsPage() {
           </CardContent>
         </Card>
 
-        <Card className="group hover:shadow-lg transition-shadow">
+        <Card className="group hover-lift hover-glow animate-scale-in animate-stagger-4">
           <CardHeader>
             <div className="aspect-video bg-gradient-to-br from-orange-500 to-red-500 rounded-lg mb-4 flex items-center justify-center">
               <div className="text-white text-lg font-semibold">Mobile App</div>
@@ -172,7 +221,12 @@ export default function ProjectsPage() {
                 </CardDescription>
               </div>
               <div className="flex gap-1">
-                <Button variant="ghost" size="sm" asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  asChild
+                  className="hover-lift"
+                >
                   <Link href="https://github.com" target="_blank">
                     <Github className="h-4 w-4" />
                   </Link>
@@ -182,8 +236,8 @@ export default function ProjectsPage() {
           </CardHeader>
           <CardContent>
             <p className="text-sm text-muted-foreground mb-4">
-              Cross-platform mobile app for task management with offline support, push notifications, and team
-              collaboration features.
+              Cross-platform mobile app for task management with offline
+              support, push notifications, and team collaboration features.
             </p>
             <div className="flex flex-wrap gap-1">
               <Badge variant="secondary" className="text-xs">
@@ -199,27 +253,37 @@ export default function ProjectsPage() {
           </CardContent>
         </Card>
 
-        <Card className="group hover:shadow-lg transition-shadow">
+        <Card className="group hover-lift hover-glow animate-scale-in animate-stagger-5">
           <CardHeader>
             <div className="aspect-video bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg mb-4 flex items-center justify-center">
               <div className="text-white text-lg font-semibold">API</div>
             </div>
             <div className="flex justify-between items-start">
               <div>
-                <CardTitle>RESTful API Service</CardTitle>
+                <CardTitle>REST API Service</CardTitle>
                 <CardDescription className="flex items-center gap-2 mt-1">
                   <Calendar className="h-3 w-3" />
                   <span>Aug 2024</span>
                 </CardDescription>
               </div>
               <div className="flex gap-1">
-                <Button variant="ghost" size="sm" asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  asChild
+                  className="hover-lift"
+                >
                   <Link href="https://github.com" target="_blank">
                     <Github className="h-4 w-4" />
                   </Link>
                 </Button>
-                <Button variant="ghost" size="sm" asChild>
-                  <Link href="https://example.com" target="_blank">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  asChild
+                  className="hover-lift"
+                >
+                  <Link href="https://api.example.com" target="_blank">
                     <ExternalLink className="h-4 w-4" />
                   </Link>
                 </Button>
@@ -228,7 +292,8 @@ export default function ProjectsPage() {
           </CardHeader>
           <CardContent>
             <p className="text-sm text-muted-foreground mb-4">
-              Scalable API service with authentication, rate limiting, comprehensive documentation, and monitoring.
+              Scalable API service with authentication, rate limiting,
+              comprehensive documentation, and monitoring.
             </p>
             <div className="flex flex-wrap gap-1">
               <Badge variant="secondary" className="text-xs">
@@ -244,21 +309,26 @@ export default function ProjectsPage() {
           </CardContent>
         </Card>
 
-        <Card className="group hover:shadow-lg transition-shadow">
+        <Card className="group hover-lift hover-glow animate-scale-in animate-stagger-6">
           <CardHeader>
-            <div className="aspect-video bg-gradient-to-br from-violet-500 to-purple-500 rounded-lg mb-4 flex items-center justify-center">
+            <div className="aspect-video bg-gradient-to-br from-teal-500 to-cyan-500 rounded-lg mb-4 flex items-center justify-center">
               <div className="text-white text-lg font-semibold">CLI Tool</div>
             </div>
             <div className="flex justify-between items-start">
               <div>
-                <CardTitle>Development CLI Tool</CardTitle>
+                <CardTitle>Developer CLI Tool</CardTitle>
                 <CardDescription className="flex items-center gap-2 mt-1">
                   <Calendar className="h-3 w-3" />
                   <span>Jul 2024</span>
                 </CardDescription>
               </div>
               <div className="flex gap-1">
-                <Button variant="ghost" size="sm" asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  asChild
+                  className="hover-lift"
+                >
                   <Link href="https://github.com" target="_blank">
                     <Github className="h-4 w-4" />
                   </Link>
@@ -268,22 +338,23 @@ export default function ProjectsPage() {
           </CardHeader>
           <CardContent>
             <p className="text-sm text-muted-foreground mb-4">
-              Command-line tool for automating development workflows, project scaffolding, and deployment processes.
+              Command-line tool for automating development workflows, project
+              scaffolding, and deployment processes.
             </p>
             <div className="flex flex-wrap gap-1">
               <Badge variant="secondary" className="text-xs">
-                Go
+                TypeScript
+              </Badge>
+              <Badge variant="secondary" className="text-xs">
+                Node.js
               </Badge>
               <Badge variant="secondary" className="text-xs">
                 CLI
-              </Badge>
-              <Badge variant="secondary" className="text-xs">
-                Docker
               </Badge>
             </div>
           </CardContent>
         </Card>
       </div>
     </div>
-  )
+  );
 }

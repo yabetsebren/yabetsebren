@@ -10,13 +10,23 @@ import { Button } from "@/components/ui/button";
 import { Calendar, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { getAllPosts, PostMeta } from "@/lib/server-utils";
+import JaguarBackground from "@/components/ui/jaguar-background";
 
 export default async function NewsPage() {
   const posts: PostMeta[] = await getAllPosts();
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <div className="mb-8">
+    <div className="container mx-auto px-4 py-8 max-w-4xl relative">
+      {/* Jaguar Skin Background */}
+      <JaguarBackground variant="primary" />
+
+      {/* Floating Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-40 left-10 w-72 h-72 bg-gradient-to-br from-indigo-500/5 to-purple-500/5 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-32 right-16 w-96 h-96 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 rounded-full blur-3xl animate-float-delayed"></div>
+      </div>
+
+      <div className="mb-8 animate-fade-in-up relative z-10">
         <h1 className="text-3xl font-bold text-foreground mb-2">News & Blog</h1>
         <p className="text-muted-foreground">
           Thoughts on development, design, and technology trends
@@ -24,7 +34,7 @@ export default async function NewsPage() {
       </div>
 
       {/* Featured Post */}
-      <Card className="mb-8">
+      <Card className="mb-8 hover-lift hover-glow animate-fade-in-up animate-stagger-1 relative z-10">
         <CardHeader>
           <div className="aspect-video bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600 rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
             <div className="absolute inset-0 bg-black/20"></div>
@@ -59,7 +69,7 @@ export default async function NewsPage() {
               <Badge variant="secondary">JavaScript</Badge>
               <Badge variant="secondary">Best Practices</Badge>
             </div>
-            <Button variant="outline" asChild>
+            <Button variant="outline" asChild className="hover-lift">
               <Link href="/news/react-best-practices-2024">
                 Read More
                 <ArrowRight className="h-4 w-4 ml-1" />
@@ -70,11 +80,13 @@ export default async function NewsPage() {
       </Card>
 
       {/* Blog Posts Grid */}
-      <div className="grid gap-6 md:grid-cols-2">
-        {posts.map((post) => (
+      <div className="grid gap-6 md:grid-cols-2 relative z-10">
+        {posts.map((post, index) => (
           <Card
             key={post.id}
-            className="group hover:shadow-lg transition-shadow"
+            className={`group hover-lift hover-glow animate-scale-in animate-stagger-${
+              index + 2
+            }`}
           >
             <CardHeader>
               <Badge className="w-fit mb-2" variant="outline">
@@ -95,7 +107,12 @@ export default async function NewsPage() {
                 {post.description}
               </p>
               <div className="flex items-center justify-between">
-                <Button variant="ghost" size="sm" asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  asChild
+                  className="hover-lift"
+                >
                   <Link href={`/news/${post.id}`}>
                     Read More
                     <ArrowRight className="h-4 w-4 ml-1" />
@@ -108,8 +125,8 @@ export default async function NewsPage() {
       </div>
 
       {/* Load More */}
-      <div className="text-center mt-12">
-        <Button variant="outline" size="lg">
+      <div className="text-center mt-12 animate-fade-in animate-stagger-6 relative z-10">
+        <Button variant="outline" size="lg" className="hover-lift">
           Load More Articles
         </Button>
       </div>

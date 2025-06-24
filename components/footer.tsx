@@ -3,7 +3,7 @@ export const Footer = () => {
     <footer className="border-t bg-background">
       <div className="container mx-auto px-4 py-6">
         <div className="text-center text-sm text-muted-foreground">
-          <p>&copy; 2024 Yabets Ebren. All rights reserved.</p>
+          <p>&copy; 2025 Yabets Ebren. All rights reserved.</p>
         </div>
       </div>
     </footer>
