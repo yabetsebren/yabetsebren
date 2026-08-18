@@ -13,11 +13,11 @@ import {
 } from "@/components/ui/sheet";
 import { ThemeToggle } from "@/components/theme-toggle";
 import Logo from "@/components/ui/logo";
-import { Menu } from "lucide-react";
+import { Menu, Download } from "lucide-react";
 import { cn } from "@/lib/cn";
 
 const navigation = [
-  { name: "Resume", href: "/resume" },
+  { name: "Teaching", href: "/#teaching" },
   { name: "Projects", href: "/projects" },
   { name: "News/Blog", href: "/news" },
 ];
@@ -31,8 +31,16 @@ export function Navbar() {
       <div className="container mx-auto px-4">
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center gap-3">
             <Logo size={64} className="h-16 w-16" />
+            <div className="hidden sm:block leading-tight">
+              <div className="font-heading font-semibold text-foreground">
+                Yabets Ebren
+              </div>
+              <div className="text-xs text-muted-foreground">
+                ML Researcher
+              </div>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
@@ -47,21 +55,32 @@ export function Navbar() {
                   key={item.name}
                   href={item.href}
                   className={cn(
-                    "relative text-sm font-medium transition-colors hover:text-foreground",
+                    "relative text-sm font-medium font-mono transition-colors hover:text-foreground",
                     isActive ? "text-foreground" : "text-muted-foreground"
                   )}
                 >
                   {item.name}
                   {isActive && (
-                    <div className="absolute -bottom-1 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-emerald-500" />
+                    <div className="absolute -bottom-1 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-primary" />
                   )}
                 </Link>
               );
             })}
           </nav>
 
-          {/* Theme Toggle */}
+          {/* Resume + Theme Toggle */}
           <div className="flex items-center gap-2">
+            <Button
+              asChild
+              size="sm"
+              className="hidden sm:inline-flex hover-lift"
+            >
+              <a href="/resume.pdf" download>
+                <Download className="h-4 w-4 mr-2" />
+                Resume
+              </a>
+            </Button>
+
             <ThemeToggle />
 
             {/* Mobile Menu */}
@@ -86,11 +105,11 @@ export function Navbar() {
                       <AvatarFallback>YE</AvatarFallback>
                     </Avatar>
                     <div>
-                      <div className="font-semibold text-foreground">
+                      <div className="font-heading font-semibold text-foreground">
                         Yabets Ebren
                       </div>
                       <div className="text-sm text-muted-foreground">
-                        Graduate Student & Researcher
+                        ML Researcher
                       </div>
                     </div>
                   </div>
@@ -107,7 +126,7 @@ export function Navbar() {
                           href={item.href}
                           onClick={() => setIsOpen(false)}
                           className={cn(
-                            "flex items-center gap-3 text-lg font-medium transition-colors hover:text-foreground",
+                            "flex items-center gap-3 text-lg font-medium font-mono transition-colors hover:text-foreground",
                             isActive
                               ? "text-foreground"
                               : "text-muted-foreground"
@@ -115,12 +134,19 @@ export function Navbar() {
                         >
                           {item.name}
                           {isActive && (
-                            <div className="h-2 w-2 rounded-full bg-emerald-500" />
+                            <div className="h-2 w-2 rounded-full bg-primary" />
                           )}
                         </Link>
                       );
                     })}
                   </nav>
+
+                  <Button asChild className="hover-lift">
+                    <a href="/resume.pdf" download onClick={() => setIsOpen(false)}>
+                      <Download className="h-4 w-4 mr-2" />
+                      Download Resume
+                    </a>
+                  </Button>
                 </div>
               </SheetContent>
             </Sheet>

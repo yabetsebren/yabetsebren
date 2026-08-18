@@ -27,10 +27,9 @@ A modern, responsive portfolio website built with Next.js, TypeScript, and Tailw
 
 ```
 ├── app/                    # Next.js app directory
-│   ├── page.tsx           # Home page
+│   ├── page.tsx           # Home page (About, Latest Posts, Projects, Teaching)
 │   ├── projects/          # Projects page
-│   ├── news/              # Blog/news pages
-│   └── resume/            # Resume page
+│   └── news/              # Blog/news pages
 ├── components/            # Reusable components
 │   ├── ui/               # Shadcn/ui components
 │   ├── navbar.tsx        # Navigation component
@@ -144,7 +143,7 @@ Your post content here...
 
 - Update personal information in `app/page.tsx`
 - Modify project details in `app/projects/page.tsx`
-- Update resume content in `app/resume/page.tsx`
+- Update teaching entries in the Teaching section of `app/page.tsx`
 
 ## 📝 License
 

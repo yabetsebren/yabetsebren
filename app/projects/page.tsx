@@ -9,22 +9,15 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, Calendar } from "lucide-react";
 import Link from "next/link";
-import JaguarBackground from "@/components/ui/jaguar-background";
+import SectionTitle from "@/components/ui/section-title";
 
 export default function ProjectsPage() {
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl relative">
-      {/* Jaguar Skin Background */}
-      <JaguarBackground variant="secondary" />
-
-      {/* Floating Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-32 right-20 w-80 h-80 bg-gradient-to-br from-emerald-500/5 to-teal-500/5 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-40 left-20 w-64 h-64 bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-full blur-3xl animate-float-delayed"></div>
-      </div>
-
       <div className="mb-8 animate-fade-in-up relative z-10">
-        <h1 className="text-3xl font-bold text-foreground mb-2">Projects</h1>
+        <SectionTitle as="h1" className="text-3xl">
+          Projects
+        </SectionTitle>
         <p className="text-muted-foreground">
           A collection of my work, experiments, and open source contributions
         </p>
@@ -34,7 +27,7 @@ export default function ProjectsPage() {
         {/* Featured Project */}
         <Card className="md:col-span-2 lg:col-span-3 hover-lift hover-glow animate-fade-in-up animate-stagger-1">
           <CardHeader>
-            <div className="aspect-video bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500 rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
+            <div className="aspect-video bg-gradient-to-br from-indigo-950 via-purple-900 to-amber-600 rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
               <div className="absolute inset-0 bg-black/20"></div>
               <div className="relative text-white text-center">
                 <div className="text-2xl font-bold mb-2">
@@ -96,7 +89,7 @@ export default function ProjectsPage() {
         {/* Regular Projects */}
         <Card className="group hover-lift hover-glow animate-scale-in animate-stagger-2">
           <CardHeader>
-            <div className="aspect-video bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg mb-4 flex items-center justify-center">
+            <div className="aspect-video bg-gradient-to-br from-violet-600 to-purple-900 rounded-lg mb-4 flex items-center justify-center">
               <div className="text-white text-lg font-semibold">AI Chat</div>
             </div>
             <div className="flex justify-between items-start">
@@ -153,7 +146,7 @@ export default function ProjectsPage() {
 
         <Card className="group hover-lift hover-glow animate-scale-in animate-stagger-3">
           <CardHeader>
-            <div className="aspect-video bg-gradient-to-br from-blue-500 to-indigo-500 rounded-lg mb-4 flex items-center justify-center">
+            <div className="aspect-video bg-gradient-to-br from-zinc-800 to-indigo-950 rounded-lg mb-4 flex items-center justify-center">
               <div className="text-white text-lg font-semibold">Dashboard</div>
             </div>
             <div className="flex justify-between items-start">
@@ -209,7 +202,7 @@ export default function ProjectsPage() {
 
         <Card className="group hover-lift hover-glow animate-scale-in animate-stagger-4">
           <CardHeader>
-            <div className="aspect-video bg-gradient-to-br from-orange-500 to-red-500 rounded-lg mb-4 flex items-center justify-center">
+            <div className="aspect-video bg-gradient-to-br from-amber-600 to-orange-700 rounded-lg mb-4 flex items-center justify-center">
               <div className="text-white text-lg font-semibold">Mobile App</div>
             </div>
             <div className="flex justify-between items-start">
@@ -255,7 +248,7 @@ export default function ProjectsPage() {
 
         <Card className="group hover-lift hover-glow animate-scale-in animate-stagger-5">
           <CardHeader>
-            <div className="aspect-video bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg mb-4 flex items-center justify-center">
+            <div className="aspect-video bg-gradient-to-br from-emerald-900 to-zinc-900 rounded-lg mb-4 flex items-center justify-center">
               <div className="text-white text-lg font-semibold">API</div>
             </div>
             <div className="flex justify-between items-start">
@@ -311,7 +304,7 @@ export default function ProjectsPage() {
 
         <Card className="group hover-lift hover-glow animate-scale-in animate-stagger-6">
           <CardHeader>
-            <div className="aspect-video bg-gradient-to-br from-teal-500 to-cyan-500 rounded-lg mb-4 flex items-center justify-center">
+            <div className="aspect-video bg-gradient-to-br from-zinc-700 to-zinc-950 rounded-lg mb-4 flex items-center justify-center">
               <div className="text-white text-lg font-semibold">CLI Tool</div>
             </div>
             <div className="flex justify-between items-start">
