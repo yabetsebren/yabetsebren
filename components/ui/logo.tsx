@@ -23,7 +23,7 @@ const Logo: React.FC<LogoProps> = ({ className = "", size = 64 }) => {
   // A black cat reads as a crisp silhouette in daylight, and fades into
   // the dark at night — leaving only its glowing eyes visible.
   const bodyFill = theme === "dark" ? "hsl(240 8% 13%)" : "hsl(240 10% 6%)";
-  const outline = theme === "dark" ? "hsl(var(--primary) / 0.22)" : "none";
+  const outline = theme === "dark" ? "hsl(48 100% 95% / 0.35)" : "none";
   const faceLineColor =
     theme === "dark" ? "hsl(45 15% 60% / 0.4)" : "hsl(240 10% 30% / 0.5)";
 
@@ -91,8 +91,8 @@ const Logo: React.FC<LogoProps> = ({ className = "", size = 64 }) => {
           ry="10.5"
           transform="rotate(-8 43 63)"
           style={{
-            fill: "hsl(var(--primary))",
-            filter: "drop-shadow(0 0 3px hsl(var(--primary) / 0.9))",
+            fill: "#FFE600",
+            filter: "drop-shadow(0 0 3px #FFE600)",
           }}
         />
         <ellipse
@@ -103,8 +103,8 @@ const Logo: React.FC<LogoProps> = ({ className = "", size = 64 }) => {
           ry="10.5"
           transform="rotate(8 77 63)"
           style={{
-            fill: "hsl(var(--primary))",
-            filter: "drop-shadow(0 0 3px hsl(var(--primary) / 0.9))",
+            fill: "#FFE600",
+            filter: "drop-shadow(0 0 3px #FFE600)",
           }}
         />
       </svg>

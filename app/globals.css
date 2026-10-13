@@ -6,60 +6,60 @@
 
 @layer base {
   :root {
-    /* Black Cat theme — daylight: warm ivory with a deep amber "cat eye" accent */
-    --background: 40 30% 97%;
-    --foreground: 240 10% 8%;
+    /* Neo-brutalist black cat: cream paper, ink-black borders, one hot pink. */
+    --background: 48 100% 95%;
+    --foreground: 0 0% 4%;
+    /* Cards are white "stickers" in both modes so they pop on loud bands. */
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 8%;
+    --card-foreground: 0 0% 4%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 8%;
-    --primary: 38 92% 45%;
-    --primary-foreground: 40 30% 98%;
-    --secondary: 45 20% 93%;
-    --secondary-foreground: 240 10% 8%;
-    --muted: 40 15% 93%;
-    --muted-foreground: 240 5% 40%;
-    --accent: 45 30% 90%;
-    --accent-foreground: 240 10% 8%;
-    --destructive: 0 72% 45%;
-    --destructive-foreground: 40 30% 98%;
-    --border: 40 15% 87%;
-    --input: 40 15% 87%;
-    --ring: 38 92% 45%;
-    --radius: 0.75rem;
-    --chart-1: 38 92% 45%;
-    --chart-2: 265 40% 45%;
-    --chart-3: 15 75% 48%;
-    --chart-4: 200 30% 35%;
-    --chart-5: 340 55% 45%;
+    --popover-foreground: 0 0% 4%;
+    --primary: 330 100% 58%;
+    --primary-foreground: 0 0% 4%;
+    --secondary: 54 100% 50%;
+    --secondary-foreground: 0 0% 4%;
+    --muted: 48 60% 88%;
+    --muted-foreground: 0 0% 28%;
+    --accent: 54 100% 50%;
+    --accent-foreground: 0 0% 4%;
+    --destructive: 0 85% 52%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 4%;
+    --input: 0 0% 4%;
+    --ring: 330 100% 58%;
+    --radius: 0.25rem;
+    --chart-1: 330 100% 58%;
+    --chart-2: 54 100% 50%;
+    --chart-3: 200 100% 62%;
+    --chart-4: 85 100% 62%;
+    --chart-5: 265 100% 76%;
   }
 
   .dark {
-    /* Black Cat theme — midnight: near-black with glowing amber eyes */
-    --background: 240 8% 5%;
-    --foreground: 45 25% 92%;
-    --card: 240 8% 9%;
-    --card-foreground: 45 25% 92%;
-    --popover: 240 8% 8%;
-    --popover-foreground: 45 25% 92%;
-    --primary: 45 96% 55%;
-    --primary-foreground: 240 10% 6%;
-    --secondary: 260 25% 16%;
-    --secondary-foreground: 45 20% 90%;
-    --muted: 240 6% 14%;
-    --muted-foreground: 240 5% 65%;
-    --accent: 265 35% 20%;
-    --accent-foreground: 45 25% 92%;
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 240 6% 18%;
-    --input: 240 6% 18%;
-    --ring: 45 96% 55%;
-    --chart-1: 45 96% 55%;
-    --chart-2: 265 45% 58%;
-    --chart-3: 15 80% 55%;
-    --chart-4: 200 30% 45%;
-    --chart-5: 340 60% 55%;
+    --background: 0 0% 6%;
+    --foreground: 48 100% 95%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 4%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 4%;
+    --primary: 330 100% 62%;
+    --primary-foreground: 0 0% 4%;
+    --secondary: 54 100% 50%;
+    --secondary-foreground: 0 0% 4%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 72%;
+    --accent: 54 100% 50%;
+    --accent-foreground: 0 0% 4%;
+    --destructive: 0 85% 58%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 48 100% 95%;
+    --input: 48 100% 95%;
+    --ring: 330 100% 62%;
+    --chart-1: 330 100% 62%;
+    --chart-2: 54 100% 50%;
+    --chart-3: 200 100% 62%;
+    --chart-4: 85 100% 62%;
+    --chart-5: 265 100% 76%;
   }
 }
 
@@ -77,7 +77,7 @@
   h4,
   h5,
   h6 {
-    @apply font-heading tracking-wide;
+    @apply font-heading font-extrabold tracking-tight;
   }
 }
 
@@ -133,30 +133,18 @@
     animation-delay: 0.6s;
   }
 
-  /* Hover effects */
+  /* Hover effects: sticker-style jump with a hard black shadow */
   .hover-lift {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
 
   .hover-lift:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-
-  .dark .hover-lift:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 0 #000;
   }
 
   .hover-glow {
-    transition: box-shadow 0.2s ease;
-  }
-
-  .hover-glow:hover {
-    box-shadow: 0 0 15px hsl(var(--primary) / 0.15);
-  }
-
-  .dark .hover-glow:hover {
-    box-shadow: 0 0 18px hsl(var(--primary) / 0.35);
+    transition: transform 0.15s ease;
   }
 
   /* Floating animations for background elements */

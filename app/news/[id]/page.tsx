@@ -1,6 +1,11 @@
 import { getPostById, getAllPosts } from "@/lib/server-utils";
 import { notFound } from "next/navigation";
-import { Calendar } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft, Calendar } from "lucide-react";
+import Link from "next/link";
+
+// Only the posts that exist at build time are valid pages on a static host.
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const posts = await getAllPosts();
@@ -24,16 +29,30 @@ export default async function NewsPostPage({
   if (!post) return notFound();
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-3xl">
-      <h1 className="text-3xl font-bold mb-2 text-foreground">{post.title}</h1>
-      <div className="flex items-center gap-2 text-muted-foreground mb-6">
-        <Calendar className="h-4 w-4" />
-        <span>{post.date}</span>
+    <>
+      <section className="border-b-4 border-black bg-[#FFE600] text-black [background-size:18px_18px] bg-[radial-gradient(rgba(0,0,0,0.14)_1.5px,transparent_1.5px)]">
+        <div className="container mx-auto max-w-3xl px-4 py-10">
+          <Button size="sm" asChild>
+            <Link href="/news">
+              <ArrowLeft className="h-4 w-4" />
+              All updates
+            </Link>
+          </Button>
+          <h1 className="mt-6 text-4xl font-extrabold leading-tight sm:text-5xl">
+            {post.title}
+          </h1>
+          <div className="mt-3 flex items-center gap-2 font-mono text-sm font-bold uppercase">
+            <Calendar className="h-4 w-4" />
+            <span>{post.date}</span>
+          </div>
+        </div>
+      </section>
+      <div className="container mx-auto max-w-3xl px-4 py-10">
+        <article
+          className="prose prose-neutral max-w-none"
+          dangerouslySetInnerHTML={{ __html: post.content }}
+        />
       </div>
-      <article
-        className="prose prose-neutral max-w-none"
-        dangerouslySetInnerHTML={{ __html: post.content }}
-      />
-    </div>
+    </>
   );
 }

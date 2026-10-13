@@ -11,7 +11,7 @@ const config: Config = {
   theme: {
   	extend: {
   		fontFamily: {
-  			heading: ['var(--font-heading)', 'serif'],
+  			heading: ['var(--font-heading)', 'sans-serif'],
   			mono: ['var(--font-mono)', 'monospace']
   		},
   		colors: {

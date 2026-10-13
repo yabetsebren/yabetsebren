@@ -1,328 +1,163 @@
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import CatFrame from "@/components/ui/cat-frame";
-import CatTail from "@/components/ui/cat-tail";
-import SectionTitle from "@/components/ui/section-title";
-import PawDivider from "@/components/ui/paw-divider";
-import HorizontalScroller from "@/components/ui/horizontal-scroller";
-import LatestPostsCarousel from "@/components/latest-posts-carousel";
-import {
-  Github,
-  Linkedin,
-  Mail,
-  GraduationCap,
-  PawPrint,
-} from "lucide-react";
+import { Github, Linkedin, Mail, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { getAllPosts } from "@/lib/server-utils";
+import { asset } from "@/lib/asset";
 
-const skillCategories = [
+// Two spotlights (pink and white), one from each top corner, crossing over the photo.
+// Conic gradients give a clean cone of light; the mask fades it out with distance.
+const beamMask = "linear-gradient(to bottom, black 60%, transparent 100%)";
+const beams = [
   {
-    label: "Frontend",
-    skills: ["React", "Next.js", "Vue.js", "TypeScript", "Tailwind CSS"],
+    background:
+      "conic-gradient(from 134deg at 10% 0%, transparent 0deg, rgba(255,46,154,0.75) 9deg, transparent 18deg, transparent 360deg)",
   },
   {
-    label: "Backend",
-    skills: ["Node.js", "Python", "PostgreSQL", "MongoDB", "GraphQL"],
-  },
-  {
-    label: "DevOps & Tools",
-    skills: ["AWS", "Docker", "Kubernetes", "Git", "CI/CD"],
-  },
-  {
-    label: "Design & Process",
-    skills: ["Figma", "UI/UX Design", "Agile", "Scrum", "Testing"],
+    background:
+      "conic-gradient(from 208deg at 90% 0%, transparent 0deg, rgba(255,255,255,0.7) 9deg, transparent 18deg, transparent 360deg)",
   },
 ];
 
+const aboutParagraphs = [
+  "I'm a graduate student researching ML at Montana State University. I work at MSU's Computational Intelligence Lab, co-advised by Dr. Neda Nazemi  and Dr. Faraz Dadgostari",
+  "My research focuses on causal inference and causal discovery, in which I implement and modify existing methods as well as develop new ones.",
+  "I am currently developing a method to identify and test differences in lagged relationships within multivariate time series across populations.",
+];
+
+// Home is intentionally short: who I am, and what's new. Everything else
+// (publications, projects, teaching, skills) lives on its own page.
 export default async function HomePage() {
-  const posts = await getAllPosts();
+  const posts = (await getAllPosts()).slice(0, 3);
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-5xl relative">
-      {/* Hero Section */}
-      <div className="mb-16 grid gap-6 md:grid-cols-[minmax(0,320px)_1fr] relative z-10">
-        {/* Profile Card */}
-        <div className="relative flex flex-col items-center text-center gap-4 rounded-2xl border bg-card p-8 animate-fade-in-up animate-stagger-1 hover-glow">
-          <CatTail className="absolute -bottom-2 -right-3 h-16 w-10" />
-          <CatFrame size={176} className="animate-scale-in">
-            <Avatar className="h-full w-full ring-4 ring-primary/30 shadow-lg">
+    <>
+      {/* About / profile — a dark stage with spotlights */}
+      <section className="relative overflow-hidden border-b-4 border-black bg-[#0B0B0F] text-white">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(ellipse_at_top,rgba(255,46,154,0.35),transparent_70%)]" />
+
+        <div className="container relative mx-auto grid max-w-5xl grid-cols-1 items-center gap-6 px-4 py-10 md:grid-cols-[1fr_auto] md:py-12">
+          <div>
+            <h1 className="text-4xl font-extrabold uppercase leading-[0.9] sm:text-5xl md:text-6xl">
+              Yabets{" "}
+              <span className="inline-block -rotate-1 border-4 border-black bg-primary px-2 pb-0.5 text-black shadow-[4px_4px_0_0_#FFE600]">
+                Ebren
+              </span>
+            </h1>
+
+            <p className="mt-4 text-lg font-bold">
+              {/* Graduate student at Montana State University */}
+            </p>
+            <div className="mt-3 max-w-xl space-y-3 text-white/80">
+              {aboutParagraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+
+            <div className="mt-6 flex gap-3">
+              <Button
+                variant="outline"
+                size="icon"
+                asChild
+                className="shadow-[3px_3px_0_0_#FF2E9A]"
+              >
+                <Link href="https://github.com/yabetsebren" target="_blank">
+                  <Github className="h-4 w-4" />
+                  <span className="sr-only">GitHub</span>
+                </Link>
+              </Button>
+              <Button
+                variant="outline"
+                size="icon"
+                asChild
+                className="shadow-[3px_3px_0_0_#FF2E9A]"
+              >
+                <Link href="https://www.linkedin.com/in/yabets-ebren/" target="_blank">
+                  <Linkedin className="h-4 w-4" />
+                  <span className="sr-only">LinkedIn</span>
+                </Link>
+              </Button>
+              <Button
+                variant="outline"
+                size="icon"
+                asChild
+                className="shadow-[3px_3px_0_0_#FF2E9A]"
+              >
+                <Link href="mailto:yabets.ebren@student.montana.edu">
+                  <Mail className="h-4 w-4" />
+                  <span className="sr-only">Email</span>
+                </Link>
+              </Button>
+            </div>
+          </div>
+
+          {/* The spotlit star: a big portrait under two crossing spotlights */}
+          <div className="relative mx-auto flex h-[440px] w-[380px] max-w-full items-end justify-center">
+            <div className="pointer-events-none absolute left-1/2 top-[-90px] h-[600px] w-[640px] -translate-x-1/2">
+              {beams.map((beam, i) => (
+                <div
+                  key={i}
+                  className="absolute inset-0"
+                  style={{
+                    background: beam.background,
+                    maskImage: beamMask,
+                    WebkitMaskImage: beamMask,
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Light pooling on the stage floor */}
+            <div className="absolute bottom-2 h-12 w-80 max-w-full rounded-[100%] bg-primary/60 blur-xl" />
+            <div className="absolute bottom-6 h-6 w-60 max-w-full rounded-[100%] bg-white/50 blur-md" />
+
+            {/* A large plain circle, no outline */}
+            <Avatar className="relative mb-8 aspect-square h-auto w-[84%]">
               <AvatarImage
-                src="/profile-photo.jpg?height=176&width=176"
-                className="object-cover"
+                src={asset("/newpp.jpg?height=320&width=320")}
+                className="object-cover object-top"
                 alt="Yabets Ebren"
               />
-              <AvatarFallback className="text-3xl">YE</AvatarFallback>
+              <AvatarFallback className="text-5xl text-black">YE</AvatarFallback>
             </Avatar>
-          </CatFrame>
-
-          <div>
-            <h1 className="text-3xl font-bold text-foreground font-heading">
-              Yabets Ebren
-            </h1>
-            <p className="text-muted-foreground">ML Researcher</p>
-            <p className="text-muted-foreground text-m">
-              Masters Student at MSU
-            </p>
           </div>
+        </div>
+      </section>
 
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-medium text-foreground">
-            <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
-            Open to new opportunities
-          </div>
-
-          <div className="flex gap-3 pt-2">
-            <Button
-              variant="outline"
-              size="icon"
-              asChild
-              className="rounded-full hover-lift"
-            >
-              <Link href="https://github.com" target="_blank">
-                <Github className="h-4 w-4" />
-                <span className="sr-only">GitHub</span>
-              </Link>
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              asChild
-              className="rounded-full hover-lift"
-            >
-              <Link href="https://linkedin.com" target="_blank">
-                <Linkedin className="h-4 w-4" />
-                <span className="sr-only">LinkedIn</span>
-              </Link>
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              asChild
-              className="rounded-full hover-lift"
-            >
-              <Link href="mailto:john@example.com">
-                <Mail className="h-4 w-4" />
-                <span className="sr-only">Email</span>
+      {/* Latest updates — three plain lines, no cards */}
+      {/* <section className="border-b-4 border-black bg-[#FFE600] text-black">
+        <div className="container mx-auto max-w-5xl px-4 py-8">
+          <div className="flex items-center justify-between gap-4">
+            <h2 className="text-2xl font-extrabold uppercase sm:text-3xl">
+              Blog & Updates
+            </h2>
+            <Button asChild size="sm" className="shrink-0 bg-black text-white hover:bg-black/80">
+              <Link href="/news">
+                More
+                <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
           </div>
+
+          <ul className="mt-4 divide-y-2 divide-black border-y-2 border-black">
+            {posts.map((post) => (
+              <li key={post.id}>
+                <Link
+                  href={`/news/${post.id}`}
+                  className="flex flex-col gap-1 py-3 hover:bg-white sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
+                >
+                  <span className="font-bold underline-offset-4 hover:underline">
+                    {post.title}
+                  </span>
+                  <span className="shrink-0 font-mono text-xs font-bold uppercase">
+                    {post.date}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
-
-        {/* About Me Card */}
-        <div className="rounded-2xl border bg-card p-8 animate-fade-in-up animate-stagger-2 hover-glow">
-          <SectionTitle className="text-2xl">About Me</SectionTitle>
-          <p className="text-muted-foreground leading-relaxed">
-            I am a machine learning researcher currently working at MSU's Computational Inteligence Lab (Advisor Dr. Neda Nazemi). My research foucses on causal inference, effective causal discovery, and application clinical ML. <br></br>  
-          <br></br> I focus on the following </p>
-        </div>
-      </div>
-
-      
-
-
-
-      <PawDivider />
-
-      {/* Recent Blog Posts */}
-      <section className="mb-8 animate-fade-in animate-stagger-5 relative z-10">
-        <SectionTitle className="text-2xl">Latest Posts</SectionTitle>
-        <p className="text-muted-foreground mb-8">
-          Posts, news, and announcements
-        </p>
-
-        <LatestPostsCarousel posts={posts} />
-      </section>
-
-      <PawDivider />
-
-      {/* Featured Projects */}
-      <section className="mb-8 relative z-10">
-        <div className="animate-fade-in animate-stagger-5">
-          <SectionTitle className="text-2xl">Featured Projects</SectionTitle>
-          <p className="text-muted-foreground mb-8">
-            A selection of my recent work and experiments
-          </p>
-        </div>
-
-        <div className="grid gap-6 md:grid-cols-2">
-          <Card className="group hover-lift hover-glow animate-scale-in animate-stagger-6">
-            <CardHeader>
-              <div className="aspect-video bg-gradient-to-br from-zinc-900 via-purple-950 to-amber-600 rounded-lg mb-4 flex items-center justify-center">
-                <div className="text-white text-lg font-semibold">
-                  Project Demo
-                </div>
-              </div>
-              <CardTitle>E-Commerce Platform</CardTitle>
-              <CardDescription>React • TypeScript • Node.js</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                A full-stack e-commerce solution with modern UI/UX and robust
-                backend architecture.
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="group hover-lift hover-glow animate-scale-in animate-stagger-6">
-            <CardHeader>
-              <div className="aspect-video bg-gradient-to-br from-violet-700 to-purple-950 rounded-lg mb-4 flex items-center justify-center">
-                <div className="text-white text-lg font-semibold">
-                  AI Dashboard
-                </div>
-              </div>
-              <CardTitle>AI Analytics Dashboard</CardTitle>
-              <CardDescription>Next.js • Python • TensorFlow</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                Real-time analytics dashboard powered by machine learning
-                algorithms.
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      <PawDivider />
-            {/* Skills & Tools */}
-      <section className="mb-8 relative z-10 animate-fade-in animate-stagger-5">
-        <div className="flex items-center gap-2 mb-2">
-          <PawPrint className="h-3 w-3 text-primary" />
-          <span className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
-            Skills & Tools
-          </span>
-        </div>
-        <SectionTitle className="text-2xl">What I Work With</SectionTitle>
-
-        <div className="rounded-2xl border bg-card p-8 hover-glow">
-          {skillCategories.map((category, i) => (
-            <div
-              key={category.label}
-              className={`flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 py-4 ${
-                i !== skillCategories.length - 1
-                  ? "border-b border-border"
-                  : ""
-              } ${i === 0 ? "pt-0" : ""}`}
-            >
-              <span className="w-40 shrink-0 text-xs font-semibold tracking-wide text-primary uppercase">
-                {category.label}
-              </span>
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill) => (
-                  <Badge key={skill} variant="secondary">
-                    {skill}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-      <PawDivider/>
-
-      {/* Teaching */}
-      <section id="teaching" className="mb-8 relative z-10 scroll-mt-24">
-        <div className="animate-fade-in animate-stagger-5">
-          <SectionTitle className="text-2xl">Teaching</SectionTitle>
-          <p className="text-muted-foreground mb-8">
-            Courses I've taught or assisted with
-          </p>
-        </div>
-
-        <HorizontalScroller>
-          <Card className="group hover-lift hover-glow animate-scale-in animate-stagger-6 w-[320px] flex-shrink-0">
-            <CardHeader>
-              <div className="flex items-start gap-3">
-                <div className="rounded-lg bg-primary/10 p-2 text-primary">
-                  <GraduationCap className="h-5 w-5" />
-                </div>
-                <div className="space-y-1">
-                  <CardTitle> Data Structures and Algorithms</CardTitle>
-                  <CardDescription>
-                    Teaching Assistant • Montana State University • Fall 2025
-                  </CardDescription>
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                Led weekly lab sections and office hours, graded
-                assignments, and helped students build intuition for core
-                data structures and algorithms.
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="group hover-lift hover-glow animate-scale-in animate-stagger-6 w-[320px] flex-shrink-0">
-            <CardHeader>
-              <div className="flex items-start gap-3">
-                <div className="rounded-lg bg-primary/10 p-2 text-primary">
-                  <GraduationCap className="h-5 w-5" />
-                </div>
-                <div className="space-y-1">
-                  <CardTitle>Human Computer Interaction</CardTitle>
-                  <CardDescription>
-                    Teaching Assistant • Montana State University • Spring 2025
-                  </CardDescription>
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                Held a guest lecture introducing students to 
-              </p>
-            </CardContent>
-          </Card>
-          <Card className="group hover-lift hover-glow animate-scale-in animate-stagger-6 w-[320px] flex-shrink-0">
-            <CardHeader>
-              <div className="flex items-start gap-3">
-                <div className="rounded-lg bg-primary/10 p-2 text-primary">
-                  <GraduationCap className="h-5 w-5" />
-                </div>
-                <div className="space-y-1">
-                  <CardTitle>Programming with C</CardTitle>
-                  <CardDescription>
-                    Teaching Assistant • Montana State University • Spring 2026
-                  </CardDescription>
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                Held a guest lecture introducing students to 
-              </p>
-            </CardContent>
-          </Card>
-          <Card className="group hover-lift hover-glow animate-scale-in animate-stagger-6 w-[320px] flex-shrink-0">
-            <CardHeader>
-              <div className="flex items-start gap-3">
-                <div className="rounded-lg bg-primary/10 p-2 text-primary">
-                  <GraduationCap className="h-5 w-5" />
-                </div>
-                <div className="space-y-1">
-                  <CardTitle>Human Computer Interaction</CardTitle>
-                  <CardDescription>
-                    Teaching Assistant • Montana State University • Spring 2025
-                  </CardDescription>
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                Held a guest lecture introducing students to 
-              </p>
-            </CardContent>
-          </Card>
-        </HorizontalScroller>
-      </section>
-    </div>
+      </section> */}
+    </>
   );
 }

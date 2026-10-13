@@ -1,28 +1,21 @@
 import type React from "react";
 import type { Metadata } from "next";
-import { Spectral, Cinzel, Special_Elite } from "next/font/google";
+import { Space_Grotesk, Bricolage_Grotesque, Space_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import CatEyesBackground from "@/components/ui/cat-eyes-background";
 
-// Gothic, sharp, and legible: Cinzel's inscriptional caps carry the drama in
-// headings, Spectral is a serif purpose-built for on-screen reading in body
-// copy, and Special Elite's distressed typewriter strokes give labels and
-// metadata an old case-file edge.
-const bodyFont = Spectral({
+// Loud and simple: Bricolage Grotesque at extra-bold for headlines, Space
+// Grotesk for readable body copy, Space Mono for small sticker-style labels.
+const bodyFont = Space_Grotesk({ subsets: ["latin"] });
+const headingFont = Bricolage_Grotesque({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-const headingFont = Cinzel({
-  subsets: ["latin"],
-  weight: ["600", "700", "800", "900"],
   variable: "--font-heading",
 });
-const accentFont = Special_Elite({
+const accentFont = Space_Mono({
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "700"],
   variable: "--font-mono",
 });
 
@@ -43,12 +36,12 @@ export default function RootLayout({
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          forcedTheme="light"
+          defaultTheme="light"
+          enableSystem={false}
           disableTransitionOnChange
         >
           <div className="min-h-screen bg-background flex flex-col">
-            <CatEyesBackground />
             <Navbar />
             <main className="flex-1">{children}</main>
             <Footer />

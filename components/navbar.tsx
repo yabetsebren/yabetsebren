@@ -11,15 +11,24 @@ import {
   SheetTrigger,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { ThemeToggle } from "@/components/theme-toggle";
 import Logo from "@/components/ui/logo";
-import { Menu, Download } from "lucide-react";
+import { Menu, Download, Github, Linkedin, Mail } from "lucide-react";
 import { cn } from "@/lib/cn";
+import { asset } from "@/lib/asset";
 
 const navigation = [
-  { name: "Teaching", href: "/#teaching" },
+  { name: "About", href: "/" },
+  { name: "Updates", href: "/news" },
+  { name: "Publications", href: "/publications" },
   { name: "Projects", href: "/projects" },
-  { name: "News/Blog", href: "/news" },
+  { name: "Teaching", href: "/teaching" },
+  { name: "Skills", href: "/skills" },
+];
+
+const socialLinks = [
+  { name: "GitHub", href: "https://github.com/yabetsebren", icon: Github },
+  { name: "LinkedIn", href: "https://linkedin.com/in/yabets-ebren", icon: Linkedin },
+  { name: "Email", href: "mailto:yabets.ebren@student.montana.edu", icon: Mail },
 ];
 
 export function Navbar() {
@@ -27,7 +36,7 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b-4 border-foreground bg-background">
       <div className="container mx-auto px-4">
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
@@ -38,13 +47,13 @@ export function Navbar() {
                 Yabets Ebren
               </div>
               <div className="text-xs text-muted-foreground">
-                ML Researcher
+                Grad Student & ML Researcher
               </div>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden lg:flex items-center gap-1">
             {navigation.map((item) => {
               const isActive =
                 pathname === item.href ||
@@ -55,38 +64,47 @@ export function Navbar() {
                   key={item.name}
                   href={item.href}
                   className={cn(
-                    "relative text-sm font-medium font-mono transition-colors hover:text-foreground",
-                    isActive ? "text-foreground" : "text-muted-foreground"
+                    "relative border-2 border-transparent px-3 py-1 font-heading text-sm font-extrabold uppercase tracking-tight transition-colors hover:border-black hover:bg-[#FFE600] hover:text-black",
+                    isActive && "border-black bg-[#FFE600] text-black"
                   )}
                 >
                   {item.name}
-                  {isActive && (
-                    <div className="absolute -bottom-1 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-primary" />
-                  )}
                 </Link>
               );
             })}
           </nav>
 
-          {/* Resume + Theme Toggle */}
+          {/* Social + Resume */}
           <div className="flex items-center gap-2">
+            <div className="hidden xl:flex items-center gap-1">
+              {socialLinks.map((social) => (
+                <Link
+                  key={social.name}
+                  href={social.href}
+                  target={social.href.startsWith("mailto:") ? undefined : "_blank"}
+                  className="border-2 border-transparent p-2 transition-colors hover:border-black hover:bg-[#FFE600] hover:text-black"
+                >
+                  <social.icon className="h-4 w-4" />
+                  <span className="sr-only">{social.name}</span>
+                </Link>
+              ))}
+            </div>
+
             <Button
               asChild
               size="sm"
               className="hidden sm:inline-flex hover-lift"
             >
-              <a href="/resume.pdf" download>
+              <a href={asset("/resume.pdf")} download>
                 <Download className="h-4 w-4 mr-2" />
                 Resume
               </a>
             </Button>
 
-            <ThemeToggle />
-
             {/* Mobile Menu */}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="md:hidden">
+                <Button variant="ghost" size="icon" className="lg:hidden">
                   <Menu className="h-5 w-5" />
                   <span className="sr-only">Toggle menu</span>
                 </Button>
@@ -99,17 +117,18 @@ export function Navbar() {
                   <div className="flex items-center gap-3">
                     <Avatar className="h-10 w-10">
                       <AvatarImage
-                        src="/placeholder.svg?height=40&width=40"
-                        alt="Profile"
+                        src={asset("/profile-photo.jpg?height=40&width=40")}
+                        className="object-cover"
+                        alt="Yabets Girma Ebren"
                       />
                       <AvatarFallback>YE</AvatarFallback>
                     </Avatar>
                     <div>
                       <div className="font-heading font-semibold text-foreground">
-                        Yabets Ebren
+                        Yabets Girma Ebren
                       </div>
                       <div className="text-sm text-muted-foreground">
-                        ML Researcher
+                        Grad Student & ML Researcher
                       </div>
                     </div>
                   </div>
@@ -126,10 +145,8 @@ export function Navbar() {
                           href={item.href}
                           onClick={() => setIsOpen(false)}
                           className={cn(
-                            "flex items-center gap-3 text-lg font-medium font-mono transition-colors hover:text-foreground",
-                            isActive
-                              ? "text-foreground"
-                              : "text-muted-foreground"
+                            "flex items-center gap-3 font-heading text-2xl font-extrabold uppercase tracking-tight transition-colors hover:text-primary",
+                            isActive && "text-primary"
                           )}
                         >
                           {item.name}
@@ -141,8 +158,31 @@ export function Navbar() {
                     })}
                   </nav>
 
+                  <div className="flex items-center gap-2">
+                    {socialLinks.map((social) => (
+                      <Link
+                        key={social.name}
+                        href={social.href}
+                        target={
+                          social.href.startsWith("mailto:")
+                            ? undefined
+                            : "_blank"
+                        }
+                        onClick={() => setIsOpen(false)}
+                        className="border-2 border-black p-2.5 transition-colors hover:bg-[#FFE600]"
+                      >
+                        <social.icon className="h-4 w-4" />
+                        <span className="sr-only">{social.name}</span>
+                      </Link>
+                    ))}
+                  </div>
+
                   <Button asChild className="hover-lift">
-                    <a href="/resume.pdf" download onClick={() => setIsOpen(false)}>
+                    <a
+                      href={asset("/resume.pdf")}
+                      download
+                      onClick={() => setIsOpen(false)}
+                    >
                       <Download className="h-4 w-4 mr-2" />
                       Download Resume
                     </a>
