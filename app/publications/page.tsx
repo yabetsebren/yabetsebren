@@ -54,7 +54,6 @@ const publications: {
 const linkClass =
   "inline-flex items-center gap-1.5 text-sm font-bold underline decoration-2 underline-offset-4 hover:bg-white";
 
-// No cards: plain rows on the pink page, split by thick black rules.
 export default function PublicationsPage() {
   return (
     <PageShell

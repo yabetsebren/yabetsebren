@@ -2,15 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Prism.js syntax highlighting - Custom theme for light/dark mode */
-
 @layer base {
   :root {
-    /* Neo-brutalist black cat: cream paper, ink-black borders, one hot pink. */
-    --background: 48 100% 95%;
+        --background: 48 100% 95%;
     --foreground: 0 0% 4%;
-    /* Cards are white "stickers" in both modes so they pop on loud bands. */
-    --card: 0 0% 100%;
+        --card: 0 0% 100%;
     --card-foreground: 0 0% 4%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 4%;
@@ -81,10 +77,8 @@
   }
 }
 
-/* Minimal Clean Animations */
 @layer utilities {
-  /* Basic animations with better opacity handling */
-  .animate-fade-in {
+    .animate-fade-in {
     opacity: 0;
     animation: fadeIn 0.8s ease-out forwards;
   }
@@ -113,8 +107,7 @@
     animation: scaleIn 0.6s ease-out forwards;
   }
 
-  /* Staggered delays */
-  .animate-stagger-1 {
+    .animate-stagger-1 {
     animation-delay: 0.1s;
   }
   .animate-stagger-2 {
@@ -133,8 +126,7 @@
     animation-delay: 0.6s;
   }
 
-  /* Hover effects: sticker-style jump with a hard black shadow */
-  .hover-lift {
+    .hover-lift {
     transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
 
@@ -147,8 +139,7 @@
     transition: transform 0.15s ease;
   }
 
-  /* Floating animations for background elements */
-  .animate-float {
+    .animate-float {
     animation: float 6s ease-in-out infinite;
   }
 
@@ -157,21 +148,18 @@
     animation-delay: -4s;
   }
 
-  /* A slow, deliberate cat-eye blink — mostly open, briefly shut */
-  .animate-cat-blink {
+    .animate-cat-blink {
     animation: catBlink 6s ease-in-out infinite;
     transform-box: fill-box;
     transform-origin: center;
   }
 
-  /* A slow, idle tail flick */
-  .animate-tail-sway {
+    .animate-tail-sway {
     animation: tailSway 4s ease-in-out infinite;
     transform-origin: bottom center;
   }
 }
 
-/* Keyframe definitions */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -259,7 +247,6 @@
   }
 }
 
-/* Custom scrollbar for better dark mode support */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -276,13 +263,11 @@
   @apply bg-muted-foreground/50;
 }
 
-/* Smooth transitions for theme changes */
 * {
   transition: background-color 0.3s ease, border-color 0.3s ease,
     color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Enhanced prose styles for blog content */
 .prose {
   @apply text-foreground;
   line-height: 1.7;
@@ -330,7 +315,6 @@
   @apply bg-transparent p-0;
 }
 
-/* Custom Prism.js styling for better light/dark mode support */
 .token.comment,
 .token.prolog,
 .token.doctype,
@@ -386,7 +370,6 @@
   @apply text-red-600 dark:text-red-400;
 }
 
-/* Enhanced code block styling */
 .prose pre {
   @apply bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 p-4 rounded-lg overflow-x-auto my-6;
 }
@@ -425,7 +408,6 @@
   @apply bg-gray-100 dark:bg-gray-700 font-semibold text-gray-900 dark:text-gray-100;
 }
 
-/* Line clamp utilities */
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;

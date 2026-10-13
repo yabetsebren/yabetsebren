@@ -19,7 +19,6 @@ const courses = [
 
 ];
 
-// No cards here: plain rows on the sky-blue page, split by thick black rules.
 export default function TeachingPage() {
   return (
     <PageShell

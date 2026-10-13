@@ -10,7 +10,6 @@ permissions:
   pages: write
   id-token: write
 
-# One deploy at a time; a newer push replaces an unfinished one.
 concurrency:
   group: pages
   cancel-in-progress: true
@@ -32,7 +31,6 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      # <user>.github.io repos are served from "/", every other repo from "/<repo>"
       - name: Work out the base path
         run: |
           REPO="${GITHUB_REPOSITORY#*/}"

@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar } from "lucide-react";
 import Link from "next/link";
 
-// Only the posts that exist at build time are valid pages on a static host.
 export const dynamicParams = false;
 
 export async function generateStaticParams() {

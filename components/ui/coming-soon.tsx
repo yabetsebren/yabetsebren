@@ -5,18 +5,12 @@ import PageShell from "@/components/ui/page-shell";
 
 interface ComingSoonProps {
   title: string;
-  // Tailwind background class, passed in full so Tailwind can see it.
   colorClass: string;
-  // The one-line gag under the page title.
   description: string;
-  // The big headline on the page.
   headline: string;
-  // The longer joke underneath.
   message: string;
 }
 
-// One placeholder page for anything not ready yet. To go live, replace the
-// <ComingSoon /> in that route's page.tsx with the real content.
 const ComingSoon = ({
   title,
   colorClass,

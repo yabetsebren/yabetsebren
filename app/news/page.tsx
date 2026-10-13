@@ -1,7 +1,5 @@
 import ComingSoon from "@/components/ui/coming-soon";
 
-// Placeholder until the updates page is ready: replace <ComingSoon /> with the
-// list of posts (individual posts still live at /news/[id]).
 export default function NewsPage() {
   return (
     <ComingSoon

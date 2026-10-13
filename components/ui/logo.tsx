@@ -20,8 +20,6 @@ const Logo: React.FC<LogoProps> = ({ className = "", size = 64 }) => {
     return <div style={{ width: size, height: size }} className={className} />;
   }
 
-  // A black cat reads as a crisp silhouette in daylight, and fades into
-  // the dark at night — leaving only its glowing eyes visible.
   const bodyFill = theme === "dark" ? "hsl(240 8% 13%)" : "hsl(240 10% 6%)";
   const outline = theme === "dark" ? "hsl(48 100% 95% / 0.35)" : "none";
   const faceLineColor =
@@ -36,7 +34,6 @@ const Logo: React.FC<LogoProps> = ({ className = "", size = 64 }) => {
         role="img"
         aria-label="Black cat logo"
       >
-        {/* Ears */}
         <path
           d="M32 44 L20 12 L52 38 Z"
           fill={bodyFill}
@@ -50,7 +47,6 @@ const Logo: React.FC<LogoProps> = ({ className = "", size = 64 }) => {
           strokeWidth={1}
         />
 
-        {/* Head */}
         <ellipse
           cx="60"
           cy="66"
@@ -61,7 +57,6 @@ const Logo: React.FC<LogoProps> = ({ className = "", size = 64 }) => {
           strokeWidth={1}
         />
 
-        {/* Whiskers */}
         <g
           stroke={faceLineColor}
           strokeWidth={1.2}
@@ -73,16 +68,13 @@ const Logo: React.FC<LogoProps> = ({ className = "", size = 64 }) => {
           <path d="M104 68 L82 66" />
           <path d="M104 78 L82 74" />
 
-          {/* Nose */}
           <path d="M56 77 L64 77 L60 83 Z" fill={faceLineColor} stroke="none" />
 
-          {/* Mouth */}
           <path d="M60 83 L60 87" fill="none" />
           <path d="M60 87 Q 52 92 45 85" fill="none" />
           <path d="M60 87 Q 68 92 75 85" fill="none" />
         </g>
 
-        {/* Glowing eyes */}
         <ellipse
           className="animate-cat-blink"
           cx="43"

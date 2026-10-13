@@ -26,10 +26,6 @@ export type Post = PostMeta & {
   content: string;
 };
 
-// Note: Server functions are available in ./server-utils.ts
-// They should only be imported in server components and API routes
-
-// Utility functions for formatting
 export const formatDate = (dateString: string): string => {
   return new Date(dateString).toLocaleDateString("en-US", {
     year: "numeric",

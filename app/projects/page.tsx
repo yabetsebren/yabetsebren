@@ -1,6 +1,5 @@
 import ComingSoon from "@/components/ui/coming-soon";
 
-// Placeholder until real projects are ready: replace <ComingSoon /> with the list.
 export default function ProjectsPage() {
   return (
     <ComingSoon

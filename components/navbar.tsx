@@ -39,7 +39,6 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b-4 border-foreground bg-background">
       <div className="container mx-auto px-4">
         <div className="flex h-20 items-center justify-between">
-          {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
             <Logo size={64} className="h-16 w-16" />
             <div className="hidden sm:block leading-tight">
@@ -52,7 +51,6 @@ export function Navbar() {
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1">
             {navigation.map((item) => {
               const isActive =
@@ -74,7 +72,6 @@ export function Navbar() {
             })}
           </nav>
 
-          {/* Social + Resume */}
           <div className="flex items-center gap-2">
             <div className="hidden xl:flex items-center gap-1">
               {socialLinks.map((social) => (
@@ -101,7 +98,6 @@ export function Navbar() {
               </a>
             </Button>
 
-            {/* Mobile Menu */}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="lg:hidden">

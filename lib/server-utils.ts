@@ -71,7 +71,6 @@ export const getPostById = async (id: string): Promise<Post | null> => {
     const fileContents = fs.readFileSync(fullPath, "utf8");
     const { data, content } = matter(fileContents);
 
-    // Process markdown with syntax highlighting
     const processedContent = await remark()
       .use(html, { sanitize: false })
       .process(content);
@@ -121,18 +120,15 @@ export const getRelatedPosts = async (
 
   const allPosts = await getAllPosts();
 
-  // Filter out current post and calculate relevance scores
   const relatedPosts = allPosts
     .filter((post) => post.id !== currentPostId)
     .map((post) => {
       let score = 0;
 
-      // Same category gets high score
       if (post.category === currentPost.category) {
         score += 3;
       }
 
-      // Shared tags get points
       const sharedTags =
         post.tags?.filter((tag) => currentPost.tags?.includes(tag)) || [];
       score += sharedTags.length;

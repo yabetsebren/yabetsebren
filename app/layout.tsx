@@ -6,8 +6,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 
-// Loud and simple: Bricolage Grotesque at extra-bold for headlines, Space
-// Grotesk for readable body copy, Space Mono for small sticker-style labels.
 const bodyFont = Space_Grotesk({ subsets: ["latin"] });
 const headingFont = Bricolage_Grotesque({
   subsets: ["latin"],

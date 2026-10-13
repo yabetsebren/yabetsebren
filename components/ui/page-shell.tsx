@@ -1,13 +1,10 @@
 interface PageShellProps {
   title: string;
   description: string;
-  // Tailwind background class, passed in full so Tailwind can see it.
   colorClass: string;
   children: React.ReactNode;
 }
 
-// Every inner page is one loud color from edge to edge, with a dot texture,
-// a sticker-style title, and white or colored cards on top.
 const PageShell = ({
   title,
   description,

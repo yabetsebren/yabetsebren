@@ -5,8 +5,6 @@ import Link from "next/link";
 import { getAllPosts } from "@/lib/server-utils";
 import { asset } from "@/lib/asset";
 
-// Two spotlights (pink and white), one from each top corner, crossing over the photo.
-// Conic gradients give a clean cone of light; the mask fades it out with distance.
 const beamMask = "linear-gradient(to bottom, black 60%, transparent 100%)";
 const beams = [
   {
@@ -25,14 +23,11 @@ const aboutParagraphs = [
   "I am currently developing a method to identify and test differences in lagged relationships within multivariate time series across populations.",
 ];
 
-// Home is intentionally short: who I am, and what's new. Everything else
-// (publications, projects, teaching, skills) lives on its own page.
 export default async function HomePage() {
   const posts = (await getAllPosts()).slice(0, 3);
 
   return (
     <>
-      {/* About / profile — a dark stage with spotlights */}
       <section className="relative overflow-hidden border-b-4 border-black bg-[#0B0B0F] text-white">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(ellipse_at_top,rgba(255,46,154,0.35),transparent_70%)]" />
 
@@ -91,7 +86,6 @@ export default async function HomePage() {
             </div>
           </div>
 
-          {/* The spotlit star: a big portrait under two crossing spotlights */}
           <div className="relative mx-auto flex h-[440px] w-[380px] max-w-full items-end justify-center">
             <div className="pointer-events-none absolute left-1/2 top-[-90px] h-[600px] w-[640px] -translate-x-1/2">
               {beams.map((beam, i) => (
@@ -107,11 +101,9 @@ export default async function HomePage() {
               ))}
             </div>
 
-            {/* Light pooling on the stage floor */}
             <div className="absolute bottom-2 h-12 w-80 max-w-full rounded-[100%] bg-primary/60 blur-xl" />
             <div className="absolute bottom-6 h-6 w-60 max-w-full rounded-[100%] bg-white/50 blur-md" />
 
-            {/* A large plain circle, no outline */}
             <Avatar className="relative mb-8 aspect-square h-auto w-[84%]">
               <AvatarImage
                 src={asset("/newpp.jpg?height=320&width=320")}
@@ -124,7 +116,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Latest updates — three plain lines, no cards */}
       {/* <section className="border-b-4 border-black bg-[#FFE600] text-black">
         <div className="container mx-auto max-w-5xl px-4 py-8">
           <div className="flex items-center justify-between gap-4">
