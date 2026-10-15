@@ -18,7 +18,7 @@ const beams = [
 ];
 
 const aboutParagraphs = [
-  "I'm a graduate student researching ML at Montana State University. I work at MSU's Computational Intelligence Lab, co-advised by Dr. Neda Nazemi  and Dr. Faraz Dadgostari",
+  "I'm a graduate student researching ML at Montana State University. I work at MSU's Computational Intelligence Lab, advised by Dr. Neda Nazemi.",
   "My research focuses on causal inference and causal discovery, in which I implement and modify existing methods as well as develop new ones.",
   "I am currently developing a method to identify and test differences in lagged relationships within multivariate time series across populations.",
 ];
