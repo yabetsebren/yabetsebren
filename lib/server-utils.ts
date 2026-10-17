@@ -15,6 +15,7 @@ export type PostMeta = {
   category?: string;
   tags?: string[];
   featuredImage?: string;
+  thumbnail?: string;
   readingTime?: string;
   status?: "published" | "draft";
   seo?: {
@@ -52,6 +53,7 @@ export const getAllPosts = async (): Promise<PostMeta[]> => {
         category: data.category,
         tags: data.tags || [],
         featuredImage: data.featuredImage,
+        thumbnail: data.thumbnail,
         readingTime: data.readingTime || calculateReadingTime(content),
         status: data.status || "published",
         seo: data.seo,
@@ -84,6 +86,7 @@ export const getPostById = async (id: string): Promise<Post | null> => {
       category: data.category,
       tags: data.tags || [],
       featuredImage: data.featuredImage,
+      thumbnail: data.thumbnail,
       readingTime: data.readingTime || calculateReadingTime(content),
       status: data.status || "published",
       seo: data.seo,
