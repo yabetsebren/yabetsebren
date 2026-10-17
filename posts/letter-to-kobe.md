@@ -8,7 +8,7 @@ tags: ["lifestyle"]
 featuredImage: "/posts/kobe_wall_art.jpg"
 thumbnail: "/posts/kobe_wall_art.jpg"
 readingTime: "2 min read"
-status: "published"
+status: "draft"
 seo:
   keywords: "Kobe, Kobe Bryant, Basketball, Life, Greatness"
   ogImage: "/images/blog/nextjs-app-router-og.jpg"

@@ -116,7 +116,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="border-b-4 border-black bg-[#FFE600] text-black">
+      {/* <section className="border-b-4 border-black bg-[#FFE600] text-black">
         <div className="container mx-auto max-w-5xl px-4 py-8">
           <div className="flex items-center justify-between gap-4">
             <h2 className="text-2xl font-extrabold uppercase sm:text-3xl">
@@ -148,7 +148,7 @@ export default async function HomePage() {
             ))}
           </ul>
         </div>
-      </section>
+      </section> */}
     </>
   );
 }
